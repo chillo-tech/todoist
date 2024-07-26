@@ -31,9 +31,14 @@ jobs:
         push: true
         tags: simachille/todoist:${{ github.sha }}
     
-    
-    - name: Connect to server
-      run: echo "Connect to server"
-    
-    - name: Run container
-      run: echo "Run container"
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+            docker stop todoist || echo "Aucun conteneur"
+            docker rm -f todoist || echo "Aucun conteneur"
+            docker run --name todoist -p 9091:80 -d todoist:${{ github.sha }}
