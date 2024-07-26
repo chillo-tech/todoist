@@ -41,4 +41,4 @@ jobs:
         script: |
             docker stop todoist || echo "Aucun conteneur"
             docker rm -f todoist || echo "Aucun conteneur"
-            docker run --name todoist -p 9091:80 -d todoist:${{ github.sha }}
+            docker run --name todoist -p 3000:80 -d todoist:${{ github.sha }}
