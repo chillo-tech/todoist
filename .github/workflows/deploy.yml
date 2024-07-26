@@ -39,5 +39,6 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-           
-            docker run --name todoist -p 3000:80 -d simachille/todoist:${{ github.sha }}
+            docker stop todoist
+            docker rm -f todoist
+            docker run --name todoist -p 3000:80 -d todoist:${{ github.sha }}
