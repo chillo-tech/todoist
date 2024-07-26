@@ -13,7 +13,7 @@ jobs:
         node-version: '20.x'
     - run: npm ci
     - run : ls -al
-    
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Set up Docker Buildx
@@ -28,7 +28,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: simachille/todoist:${{ env.GITHUB_SHA }}
+        tags: simachille/todoist:latest
     
     
     - name: Connect to server
