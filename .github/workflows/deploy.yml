@@ -5,11 +5,17 @@ jobs:
  deploy:
    runs-on: ubuntu-latest
    steps:
-    - name: clone
-      run: echo "clone"
-    
+    - name: Before checkout
+      run: ls -al 
+
+    - name: clone repository
+      uses: actions/checkout@v4
+
+    - name: After checkout
+      run: ls -al 
+
     - name: build
-      run: echo "build"
+      run: echo "BUILD"
     
     - name: Dockerize
       run: echo "Dockerize"
